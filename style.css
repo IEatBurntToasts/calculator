@@ -15,10 +15,10 @@ body {
 .calculator.container {
     display: flex;
     align-items: center;
-    height: 700px;
     background-color: gray;
-    padding: 15px;
+    padding: 20px;
     flex-flow: column nowrap;
+    row-gap: 30px;
 }
 
 .button.container {
@@ -39,7 +39,19 @@ button {
 }
 
 .interface {
-    font-size: 3rem;
-    padding: 20px;
-    max-width: inherit;
+    background-color: black;
+    color: white;
+    width: 100%;
+    text-align: right;
+    font-size: bolder;
+}
+
+p:not(.sub-interface) {
+    font-size: 3.5rem;
+    padding: 15px 20px;
+}
+
+p.sub-interface {
+    font-size: 1.5rem;
+    padding: 10px 20px 0 20px;
 }
