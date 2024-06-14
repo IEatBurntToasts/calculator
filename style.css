@@ -48,7 +48,7 @@ button:active {
     flex-direction: column;
 }
 
-.interface {
+.display {
     background-color: black;
     color: white;
     width: 100%;
@@ -57,12 +57,12 @@ button:active {
     border-radius: 10px;
 }
 
-p:not(.sub-interface) {
+p:not(.sub-display) {
     font-size: 3.5rem;
     padding: 15px 20px;
 }
 
-p.sub-interface {
+p.sub-display {
     font-size: 1.5rem;
     padding: 10px 20px 0 20px;
 }
