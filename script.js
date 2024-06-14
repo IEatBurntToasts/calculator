@@ -10,14 +10,32 @@ function processInput(key) {
     const deleteKey = 'backspace';
     const enterKey = 'enter';
 
-    switch(key.toLowerCase()) {
-        case (+key in numberKeys):
-            processNumberInput();
+    const keyType = () => {
+        if (+key in numberKeys) {
+            return 'number';
+        } else if (key in operators) {
+            return 'operator'
+        } 
+
+        return key
+    }
+
+    switch(keyType()) {
+        case 'number':
+            processNumberInput(key);
             break;
         case 'backspace':
             processBackspaceInput();
             break;
     }
+}
+
+function processNumberInput(number) {
+    if (+visualDisplay.textContent === 0) {
+        visualDisplay.textContent = '';
+    }
+
+    visualDisplay.textContent = visualDisplay.textContent + number;
 }
 
 function processBackspaceInput() {
@@ -30,7 +48,6 @@ function processBackspaceInput() {
 
 function addKeyboardEventListeners() {
     document.addEventListener('keydown', (event) => {
-        processInput(event.key);
-        console.log(event);
+        processInput(event.key.toLowerCase());
     });
 }
