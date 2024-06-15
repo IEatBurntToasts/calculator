@@ -71,6 +71,9 @@ button:active {
     text-align: right;
     font-size: bolder;
     border-radius: 10px;
+    max-width: 360px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 p:not(.sub-display) {
