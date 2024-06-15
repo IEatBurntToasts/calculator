@@ -75,14 +75,14 @@ button:active {
     color: #ffffff;
     width: 100%;
     text-align: right;
-    font-size: bolder;
+    line-height: 0.9;
     border-radius: 10px;
     max-width: 360px;
     word-wrap: break-word;
     word-break: break-all;
 }
 
-p:not(.sub-display) {
+p:not(.sub-display):not(.copyright) {
     font-size: 3.5rem;
     padding: 30px 20px;
 }
@@ -90,4 +90,30 @@ p:not(.sub-display) {
 p.sub-display {
     font-size: 1.5rem;
     padding: 10px 20px 0 20px;
+}
+
+/* Footer Section */
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    font-size: 1.5rem;
+}
+
+footer a {
+    display: flex;
+    padding: 5px;
+}
+
+.footer-github-link img {
+    width: 25px;
+    transition: transform 0.3s;
+}
+
+.footer-github-link img:hover {
+    transform: rotate(360deg) scale(1.2);
 }
