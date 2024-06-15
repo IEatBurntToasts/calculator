@@ -1,4 +1,4 @@
 # Calculator
 Calculator for Odin Project
 
-URL: dracozure.github.io/calculator/
+Link: dracozure.github.io/calculator/
