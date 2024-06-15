@@ -5,9 +5,8 @@ window.onload = () => {
 
 /* Fix:
 
-- Super long decimals
+- Repeating decimals
 - Word wrap and break of long strings
-- Error handling
 
 */
 
@@ -16,10 +15,15 @@ let subVisualDisplay = document.querySelector('.sub-display');
 let currentOperation = '';
 let resetDisplay = false;
 let resetSubDisplay = false;
+let errorDetected = false;
 
 function processInput(key) {
     const numberKeys = [0,1,2,3,4,5,6,7,8,9];
     const operators = ['+','-','/','*'];
+
+    if (errorDetected && key !== 'clear') {
+        return;
+    }
 
     const keyType = () => {
         if (numberKeys.includes(+key)) {
@@ -85,6 +89,12 @@ function processOperatorInput(operator) {
 
     result = processOperationType(currentOperator, operationTerms[0], visualDisplay.textContent);
 
+    if (result === 'Error') {
+        visualDisplay.textContent = 'Error';
+        errorDetected = true;
+        return;
+    }
+
     visualDisplay.textContent = result;
     currentOperation = '';
 
@@ -105,6 +115,10 @@ function processOperationType(operator, operand1, operand2) {
 }
 
 function divideNumbers(operand1, operand2) {
+    if (+operand2 === 0) {
+        return 'Error';
+    }
+
     return operand1 / operand2;
 }
 
@@ -129,6 +143,14 @@ function processEnterInput() {
     }
 
     result = processOperationType(operationTerms[1], operationTerms[0], visualDisplay.textContent);
+
+    if (result === 'Error') {
+        visualDisplay.textContent = 'Error';
+        subVisualDisplay.textContent = subVisualDisplay.textContent + ' 0 ='
+        errorDetected = true;
+        return;
+    }
+
     subVisualDisplay.textContent = `${operationTerms[0]} ${operationTerms[1]} ${visualDisplay.textContent} =`;
     visualDisplay.textContent = result;
     currentOperation = '';
