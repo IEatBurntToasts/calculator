@@ -1,6 +1,15 @@
 window.onload = () => {
     addKeyboardEventListeners();
+    addButtonEventListeners();
 }
+
+/* Fix:
+
+- Super long decimals
+- Word wrap and break of long strings
+- Error handling
+
+*/
 
 let visualDisplay = document.querySelector('.main-display');
 let subVisualDisplay = document.querySelector('.sub-display');
@@ -38,6 +47,8 @@ function processInput(key) {
         case '.':
             processDecimalInput();
             break;
+        case 'clear':
+            window.location.reload();
     }
 }
 
@@ -145,10 +156,26 @@ function processBackspaceInput() {
         ? 0
         : visualDisplay.textContent.slice(0,-1);
     }
+
+    if (resetSubDisplay) {
+        subVisualDisplay.textContent = '';
+        resetSubDisplay = false;
+        resetDisplay = false;
+    }
 }
 
 function addKeyboardEventListeners() {
     document.addEventListener('keydown', (event) => {
         processInput(event.key.toLowerCase());
+    });
+}
+
+function addButtonEventListeners() {
+    const allButtons = document.querySelectorAll('button');
+
+    allButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            processInput(event.target.getAttribute('data-value'));
+        });
     });
 }
