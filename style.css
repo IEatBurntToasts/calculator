@@ -2,6 +2,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Digital-7', sans-serif;
+}
+
+@font-face {
+    font-family: 'Digital-7';
+    src: url(./misc/digital-7.ttf);
 }
 
 body {
@@ -22,7 +28,7 @@ button.delete,
 button.clear {
     border: none;
     font-size: 2rem;
-    padding: 10px;
+    padding: 25px;
     margin: 5px 15px;
     flex: auto;
     border-radius: 12px;
@@ -31,7 +37,7 @@ button.clear {
 .calculator.container {
     display: flex;
     align-items: center;
-    background-color: gray;
+    background-color: #808080;
     padding: 20px;
     flex-flow: column nowrap;
     row-gap: 15px;
@@ -52,11 +58,11 @@ button:not(.delete):not(.clear) {
 }
 
 button:hover {
-    background-color: rgb(184, 177, 177);
+    background-color: #b8b1b1;
 }
 
 button:active {
-    background-color: rgb(207, 204, 204);
+    background-color: #cfcccc;
 }
 
 .col {
@@ -65,8 +71,8 @@ button:active {
 }
 
 .display {
-    background-color: black;
-    color: white;
+    background-color: #000000;
+    color: #ffffff;
     width: 100%;
     text-align: right;
     font-size: bolder;
@@ -78,7 +84,7 @@ button:active {
 
 p:not(.sub-display) {
     font-size: 3.5rem;
-    padding: 15px 20px;
+    padding: 30px 20px;
 }
 
 p.sub-display {
