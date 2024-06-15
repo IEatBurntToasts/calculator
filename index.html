@@ -13,12 +13,16 @@
             <p class="sub-display"></p>
             <p class="main-display">0</p>
         </div>
+        <div class="delete-clear container">
+            <button class="delete" data-value="backspace">Delete</button>
+            <button class="clear" data-value="clear">Clear</button>
+        </div>
         <div class="button container">
             <div class="col-1 col">
                 <button class="number">7</button>
                 <button class="number">4</button>
                 <button class="number">1</button>
-                <button class="decimal">.</button>
+                <button class="decimal" data-value=".">.</button>
             </div>
             <div class="col-2 col">
                 <button class="number">8</button>
@@ -30,13 +34,13 @@
                 <button class="number">9</button>
                 <button class="number">6</button>
                 <button class="number">3</button>
-                <button class="equal">=</button>
+                <button class="equal" data-value="enter">=</button>
             </div>
             <div class="col-4 col operators">
-                <button class="divide">/</button>
-                <button class="multiply">x</button>
-                <button class="minus">-</button>
-                <button class="plus">+</button>
+                <button class="operator" data-value="/">/</button>
+                <button class="operator" data-value="*">x</button>
+                <button class="operator" data-value="-">-</button>
+                <button class="operator" data-value="+">+</button>
             </div>
         </div>
     </div>
