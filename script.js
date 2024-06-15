@@ -3,13 +3,6 @@ window.onload = () => {
     addButtonEventListeners();
 }
 
-/* Fix:
-
-- Repeating decimals
-- Word wrap and break of long strings
-
-*/
-
 let visualDisplay = document.querySelector('.main-display');
 let subVisualDisplay = document.querySelector('.sub-display');
 let currentOperation = '';
@@ -119,19 +112,19 @@ function divideNumbers(operand1, operand2) {
         return 'Error';
     }
 
-    return operand1 / operand2;
+    return Math.round(Math.round((operand1 / operand2) * 1000) / 10) / 100;
 }
 
 function multiplyNumbers(operand1, operand2) {
-    return operand1 * operand2;
+    return Math.round(Math.round((operand1 * operand2) * 1000) / 10) / 100;
 }
 
 function addNumbers(operand1, operand2) {
-    return +operand1 + +operand2;
+    return Math.round(Math.round((operand1 + operand2) * 1000) / 10) / 100;
 }
 
 function subtractNumbers(operand1, operand2) {
-    return operand1 - operand2;
+    return Math.round(Math.round((operand1 - operand2) * 1000) / 10) / 100;
 }
 
 function processEnterInput() {
