@@ -34,6 +34,15 @@ function processInput(key) {
         case 'enter':
             processEnterInput();
             break;
+        case '.':
+            processDecimalInput();
+            break;
+    }
+}
+
+function processDecimalInput() {
+    if (!visualDisplay.textContent.includes('.')) {
+        visualDisplay.textContent = visualDisplay.textContent + '.';
     }
 }
 
@@ -107,7 +116,7 @@ function processEnterInput() {
 }
 
 function processNumberInput(number) {
-    if (+visualDisplay.textContent === 0 || resetDisplay === true) {
+    if (visualDisplay.textContent === '0' || resetDisplay === true) {
         visualDisplay.textContent = '';
     }
 
