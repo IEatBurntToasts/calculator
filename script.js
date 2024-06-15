@@ -3,6 +3,9 @@ window.onload = () => {
 }
 
 let visualDisplay = document.querySelector('.main-display');
+let subVisualDisplay = document.querySelector('.sub-display');
+let currentOperation = '';
+let enterSecondTerm = false;
 
 function processInput(key) {
     const numberKeys = [0,1,2,3,4,5,6,7,8,9];
@@ -11,18 +14,21 @@ function processInput(key) {
     const enterKey = 'enter';
 
     const keyType = () => {
-        if (+key in numberKeys) {
+        if (numberKeys.includes(+key)) {
             return 'number';
-        } else if (key in operators) {
-            return 'operator'
+        } else if (operators.includes(key)) {
+            return 'operator';
         } 
 
-        return key
+        return key;
     }
 
-    switch(keyType()) {
+    switch (keyType()) {
         case 'number':
             processNumberInput(key);
+            break;
+        case 'operator':
+            processOperatorInput(key);
             break;
         case 'backspace':
             processBackspaceInput();
@@ -30,12 +36,67 @@ function processInput(key) {
     }
 }
 
+function processOperatorInput(operator) {
+    const operationTerms = currentOperation.split(' ');
+
+    if (operationTerms.length !== 2) {
+        currentOperation = visualDisplay.textContent + ' ' + operator;
+        subVisualDisplay.textContent = currentOperation;
+        enterSecondTerm = true;
+        return;
+    } else if (enterSecondTerm === true) {
+        currentOperation = operationTerms[0] + ' ' + operator;
+        subVisualDisplay.textContent = currentOperation;
+        return;
+    }
+
+    const currentOperator = currentOperation.split(' ');
+    let result;
+
+    switch (currentOperator[1]) {
+        case '+':
+            result = addNumbers(operationTerms[0], visualDisplay.textContent);
+            break;
+        case '-':
+            result = subtractNumbers(operationTerms[0], visualDisplay.textContent);
+            break;
+        case '*':
+            result = multiplyNumbers(operationTerms[0], visualDisplay.textContent);
+            break;
+        case '/':
+            result = divideNumbers(operationTerms[0], visualDisplay.textContent);
+            break;
+    }
+
+    visualDisplay.textContent = result;
+    currentOperation = '';
+
+    processOperatorInput(operator);
+}
+
+function divideNumbers(operand1, operand2) {
+    return operand1 / operand2;
+}
+
+function multiplyNumbers(operand1, operand2) {
+    return operand1 * operand2;
+}
+
+function addNumbers(operand1, operand2) {
+    return +operand1 + +operand2;
+}
+
+function subtractNumbers(operand1, operand2) {
+    return operand1 - operand2;
+}
+
 function processNumberInput(number) {
-    if (+visualDisplay.textContent === 0) {
+    if (+visualDisplay.textContent === 0 || enterSecondTerm === true) {
         visualDisplay.textContent = '';
     }
 
     visualDisplay.textContent = visualDisplay.textContent + number;
+    enterSecondTerm = false;
 }
 
 function processBackspaceInput() {
