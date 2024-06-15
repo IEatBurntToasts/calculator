@@ -6,6 +6,7 @@ let visualDisplay = document.querySelector('.main-display');
 let subVisualDisplay = document.querySelector('.sub-display');
 let currentOperation = '';
 let resetDisplay = false;
+let resetSubDisplay = false;
 
 function processInput(key) {
     const numberKeys = [0,1,2,3,4,5,6,7,8,9];
@@ -43,18 +44,26 @@ function processInput(key) {
 function processDecimalInput() {
     if (!visualDisplay.textContent.includes('.')) {
         visualDisplay.textContent = visualDisplay.textContent + '.';
+        resetDisplay = false;
+    }
+
+    if (subVisualDisplay) {
+        subVisualDisplay.textContent = '';
+        resetSubDisplay = false;
     }
 }
 
 function processOperatorInput(operator) {
     const operationTerms = currentOperation.split(' ');
 
+    resetSubDisplay = false;
+
     if (operationTerms.length !== 2) {
         currentOperation = visualDisplay.textContent + ' ' + operator;
         subVisualDisplay.textContent = currentOperation;
         resetDisplay = true;
         return;
-    } else if (resetDisplay === true) {
+    } else if (resetDisplay) {
         currentOperation = operationTerms[0] + ' ' + operator;
         subVisualDisplay.textContent = currentOperation;
         return;
@@ -113,11 +122,17 @@ function processEnterInput() {
     visualDisplay.textContent = result;
     currentOperation = '';
     resetDisplay = true;
+    resetSubDisplay = true;
 }
 
 function processNumberInput(number) {
-    if (visualDisplay.textContent === '0' || resetDisplay === true) {
+    if (visualDisplay.textContent === '0' || resetDisplay) {
         visualDisplay.textContent = '';
+    }
+
+    if (resetSubDisplay) {
+        subVisualDisplay.textContent = '';
+        resetSubDisplay = false;
     }
 
     visualDisplay.textContent = visualDisplay.textContent + number;
