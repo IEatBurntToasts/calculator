@@ -120,7 +120,7 @@ function multiplyNumbers(operand1, operand2) {
 }
 
 function addNumbers(operand1, operand2) {
-    return Math.round(Math.round((operand1 + operand2) * 1000) / 10) / 100;
+    return Math.round(Math.round((+operand1 + +operand2) * 1000) / 10) / 100;
 }
 
 function subtractNumbers(operand1, operand2) {
